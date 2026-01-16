@@ -1,6 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+
 
 function LogIn({ className }) {
   return (
@@ -27,14 +29,18 @@ function Mail({ className }) {
 }
 
 export default function LoginPage() {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
+ 
+  
   const [mounted, setMounted] = useState(false);
 
-  useState(() => {
+  useEffect(() => {
     setMounted(true);
-  });
+  }, []);
+
 
   const validateForm = () => {
     const newErrors = {};
@@ -55,23 +61,28 @@ export default function LoginPage() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault(); 
+  
     if (validateForm()) {
       alert('Login Successful! (Demo Mode)');
-     
+      sessionStorage.setItem('loggedIn', 'true');
+  
+      setTimeout(() => {
+        router.replace('/');
+      }, 100);
     }
   };
-
+  
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 px-4">
-      {/* Luxury animated background */}
+
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full mix-blend-overlay filter blur-3xl opacity-30 animate-blob"></div>
         <div className="absolute top-1/3 right-1/3 w-96 h-96 bg-amber-600/10 rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
         <div className="absolute bottom-1/4 left-1/2 w-96 h-96 bg-slate-700/20 rounded-full mix-blend-overlay filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
       </div>
 
-      {/* Subtle grid pattern overlay */}
       <div className="fixed inset-0 pointer-events-none opacity-5" 
            style={{
              backgroundImage: `linear-gradient(rgba(251, 191, 36, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(251, 191, 36, 0.1) 1px, transparent 1px)`,
@@ -142,7 +153,6 @@ export default function LoginPage() {
                     placeholder="Enter your password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
                     className={`w-full pl-12 pr-4 h-12 bg-slate-800/50 border ${
                       errors.password ? 'border-red-500/50' : 'border-slate-700/50'
                     } text-slate-100 placeholder-slate-500 focus:bg-slate-800/70 focus:border-amber-500/50 focus:ring-2 focus:ring-amber-500/20 focus:outline-none transition-all duration-300 rounded-xl`}

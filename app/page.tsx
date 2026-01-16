@@ -179,12 +179,12 @@ function ChevronDown({ className }: { className?: string }) {
 export default function DashboardPage() {
   const router = useRouter();
   useEffect(() => {
-    const isLoggedIn = sessionStorage.getItem('loggedIn');
-  
-    if (!isLoggedIn) {
-      router.replace('/login');
-    }
-  }, [router]);
+  const isLoggedIn = sessionStorage.getItem('loggedIn');
+
+  if (!isLoggedIn) {
+    router.replace('/login');
+  }
+}, [router]);
   const [leads, setLeads] = useState<Lead[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
