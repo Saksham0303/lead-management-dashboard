@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 
-// Icon Components
 function LogIn({ className }) {
   return (
     <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -59,7 +58,7 @@ export default function LoginPage() {
   const handleSubmit = () => {
     if (validateForm()) {
       alert('Login Successful! (Demo Mode)');
-      // In real app: sessionStorage.setItem('loggedIn', 'true'); router.push('/');
+     
     }
   };
 
@@ -83,9 +82,9 @@ export default function LoginPage() {
       <div className={`relative w-full max-w-md transition-all duration-1000 ${
         mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
       }`}>
-        {/* Card with glass morphism */}
+        
         <div className="backdrop-blur-xl bg-slate-900/60 rounded-3xl border border-amber-500/20 shadow-2xl shadow-amber-500/10 overflow-hidden">
-          {/* Header */}
+          
           <div className="p-8 text-center border-b border-slate-700/50 bg-gradient-to-r from-slate-800/40 to-slate-900/40">
             <div className="flex justify-center mb-6">
               <div className="relative">
@@ -103,7 +102,7 @@ export default function LoginPage() {
             </p>
           </div>
 
-          {/* Form */}
+          
           <div className="p-8">
             <div className="space-y-6">
               {/* Email Field */}
@@ -131,7 +130,6 @@ export default function LoginPage() {
                 )}
               </div>
 
-              {/* Password Field */}
               <div className="space-y-2">
                 <label htmlFor="password" className="block text-sm font-semibold text-amber-400 uppercase tracking-wide">
                   Password
@@ -157,7 +155,6 @@ export default function LoginPage() {
                 )}
               </div>
 
-              {/* Submit Button */}
               <button
                 onClick={handleSubmit}
                 className="group relative w-full h-12 bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold rounded-xl shadow-lg shadow-amber-500/50 hover:shadow-amber-500/80 hover:scale-[1.02] transition-all duration-300 overflow-hidden"
@@ -170,7 +167,6 @@ export default function LoginPage() {
               </button>
             </div>
 
-            {/* Demo Info */}
             <div className="mt-6 p-4 bg-slate-800/30 rounded-xl border border-slate-700/50">
               <p className="text-center text-sm text-slate-400">
                 <span className="text-amber-400 font-semibold">Demo credentials:</span> any email and password (6+ chars)
@@ -179,7 +175,7 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* Footer Text */}
+  
         <p className="text-center mt-6 text-slate-500 text-sm">
           Secure authentication powered by enterprise-grade encryption
         </p>
